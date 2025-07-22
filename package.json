@@ -17,7 +17,7 @@
     "url": "https://github.com/irfanalirizvi/my-furnishing-website/issues"
   },
   "homepage": "https://github.com/irfanalirizvi/my-furnishing-website#readme",
-  "description": ""
+  "description": "" ,
   
   "dependencies": {
     "express": "^4.21.2"
