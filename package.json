@@ -18,4 +18,9 @@
   },
   "homepage": "https://github.com/irfanalirizvi/my-furnishing-website#readme",
   "description": ""
+  
+  "dependencies": {
+    "express": "^4.21.2",
+    ...
+  }
 }
