@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - India Furnishing & Rexine House</title>
+  <link rel="stylesheet" href="index.css" />
+  <style>
+    .about-section {
+      padding: 60px 0;
+      background-color: #ffffff;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .about-section .content {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .about-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 50px 20px;
+    }
+
+    .about-gallery img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .about-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .highlight-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .highlight {
+      background-color: #f4c542;
+      color: #333;
+      padding: 25px 20px;
+      border-radius: 10px;
+      width: 250px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .highlight h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>India Furnishing & Rexine House</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- About Content -->
+  <section class="about-section">
+    <div class="container">
+      <h2>About Us</h2>
+      <div class="content">
+        <p>
+          India Furnishing & Rexine House has been delivering superior quality furnishings to homes and commercial spaces for over a decade. Our commitment to customer satisfaction, product excellence, and trend-forward designs has earned us a trusted name in the market.
+        </p>
+        <br>
+        <p>
+          Whether it's premium sofas, ergonomic chairs, textured wallpapers, or orthopedic mattresses — we bring style, comfort, and affordability together.
+        </p>
+
+        <div class="highlight-boxes">
+          <div class="highlight">
+            <h3>10+ Years Experience</h3>
+            <p>We’ve been furnishing homes and offices with quality you can trust.</p>
+          </div>
+          <div class="highlight">
+            <h3>5000+ Happy Customers</h3>
+            <p>With products that blend comfort and style, our customers keep returning.</p>
+          </div>
+          <div class="highlight">
+            <h3>100% Quality Guarantee</h3>
+            <p>Every item is hand-checked for quality and durability.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- Auto-Scrolling Carousel -->
+<section class="about-carousel">
+  <div class="carousel-wrapper">
+    <div class="carousel-wrapper" id="carouselWrapper">
+      <div class="carousel-inner" id="carouselInner">
+      <img src="Shop.png"/>
+      <img src="Mattress.jpg"/>
+      <img src="chair.jpeg"/>
+      <img src="sofa.jpeg"/>
+      <img src="Sofa1.jpg">
+      <img src="Sofa2.jpg"/>
+      <img src="Sofa3.jpg"/>
+      <img src="Headboard.jpg"/>
+      <img src="Headboard2.jpg"/>
+      <img src="Headboard3.jpg"/>
+      <img src="Headboard4.jpg"/>
+      <img src="Headboard5.jpg"/>
+      <img src="Headboard6.jpg"/>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</section>
+
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 India Furnishing & Rexine House. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const carouselInner = document.getElementById("carouselInner");
+  const images = carouselInner.querySelectorAll("img");
+  const dotsContainer = document.getElementById("carouselDots");
+  const carouselWrapper = document.getElementById("carouselWrapper");
+
+  let currentIndex = 0;
+  let intervalId;
+
+  // Set full width of inner and each image for 1-slide-per-view
+  carouselInner.style.width = `${images.length * 100}%`;
+  images.forEach(img => {
+    img.style.width = `${100 / images.length}%`;
+  });
+
+  // Create dots
+  function renderDots() {
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < images.length; i++) {
+      const dot = document.createElement('button');
+      dot.classList.add('carousel-dot');
+      if (i === currentIndex) dot.classList.add('active');
+      dot.addEventListener('click', function () {
+        goToSlide(i);
+        resetInterval();
+      });
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function updateDots() {
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+    dots.forEach((dot, i) =>
+      dot.classList.toggle('active', i === currentIndex)
+    );
+  }
+
+  function goToSlide(index) {
+    currentIndex = index;
+    const movePercent = (100 / images.length) * currentIndex;
+    carouselInner.style.transform = `translateX(-${movePercent}%)`;
+    updateDots();
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    goToSlide(currentIndex);
+  }
+
+  function resetInterval() {
+    clearInterval(intervalId);
+    intervalId = setInterval(showNext, 3000);
+  }
+
+  // Pause when hovered (desktop) or touched (mobile)
+  function pauseCarousel() {
+    clearInterval(intervalId);
+  }
+
+  function resumeCarousel() {
+    resetInterval();
+  }
+
+  // 👇 Attach hover/pause events
+  carouselWrapper.addEventListener('mouseenter', pauseCarousel);
+  carouselWrapper.addEventListener('mouseleave', resumeCarousel);
+  carouselWrapper.addEventListener('touchstart', pauseCarousel); // For touch devices
+  carouselWrapper.addEventListener('touchend', resumeCarousel);
+
+  // Init carousel
+  renderDots();
+  goToSlide(0);
+  resetInterval();
+});
+
+
+
+</script>
+
+
+</body>
+</html>

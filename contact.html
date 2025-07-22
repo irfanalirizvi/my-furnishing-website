@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - India Furnishing & Rexine House</title>
+  <link rel="stylesheet" href="index.css" />
+  <style>
+    body {
+      background: white;
+    }
+    
+    .contact-section {
+      padding: 60px 0;
+      background: #fff;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      font-size: 2.1rem;
+      margin-bottom: 18px;
+      color: #4c96dcff;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    
+    .contact-form {
+      background: grey;
+      margin: 0 auto;
+      max-width: 430px;
+      padding: 36px 28px 28px 28px;
+      border-radius: 18px;
+      box-shadow: 0 2px 24px rgba(44,62,80,0.08);
+    }
+
+    .contact-form label {
+      font-weight: 500;
+      color: #2f4050;
+      text-align: left;
+      display: block;
+      margin-bottom: .3em;
+      font-size: 1.07em;
+    }
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 30px;
+      border: 1px solid #a97575ff;
+      margin-bottom: 15px;
+      background: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border .2s;
+    }
+    .contact-form input[type="text"]:focus,
+    .contact-form input[type="email"]:focus,
+    .contact-form textarea:focus {
+      border-color: #f4c542;
+    }
+    .custom-file-upload {
+      display: block;
+      margin-bottom: 17px;
+      padding: 12px;
+      border-radius: 6px;
+      background: #fffbea;
+      border: 1px dashed #e1be4e;
+      color: #ba9800;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background .22s;
+      text-align: left;
+    }
+    .custom-file-upload:hover {
+      background: #fff5cc;
+    }
+    #file-name {
+      font-size: 0.94rem;
+      color: #888;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .btn {
+      background: #f4c542;
+      color: #2f4050;
+      padding: 12px 36px;
+      border: 1px solid #e1be4e;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1.10rem;
+      cursor: pointer;
+      transition: background .23s;
+      margin-top: 7px;
+      margin-bottom: 7px;
+    }
+
+    .btn:hover {
+      background: #e1be4e;
+      color: #111;
+    }
+
+    /* Preview image styles */
+    .image-preview {
+      display: none;
+      margin-bottom: 13px;
+      text-align: left;
+    }
+
+    .image-preview img {
+      max-width: 80px;
+      max-height: 80px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-top: 4px;
+    }
+
+    @media (max-width:600px) {
+      .contact-form {margin: 0 5vw;}
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>India Furnishing & Rexine House</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="contact-section">
+    <div class="container">
+      <h2 style="color:#f4c542; text-shadow:0 2px 4px #fff3, 0 1px 0 #b09;">Contact Us & Ask About Any Product</h2>
+     <form class="contact-form" enctype="multipart/form-data" method="POST" action="http://localhost:3000/contact">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required />
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required />
+
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" rows="5" required></textarea>
+
+  <label for="photoUpload" class="custom-file-upload">
+    Upload up to 3 Images
+    <input type="file" id="photoUpload" name="photos" accept="image/*" multiple />
+  </label>
+  <div id="previewContainer" class="image-preview"></div>
+
+  <button class="btn" type="submit">Send</button>
+</form>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 India Furnishing & Rexine House. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+ const fileInput = document.getElementById('photoUpload');
+const previewContainer = document.getElementById('previewContainer');
+
+fileInput.addEventListener('change', function () {
+  previewContainer.innerHTML = ''; // Clear previous previews
+
+  const files = fileInput.files;
+  if (files.length > 3) {
+    alert("Please upload up to 3 images only.");
+    fileInput.value = '';
+    return;
+  }
+
+  Array.from(files).forEach(file => {
+    if (!file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      previewContainer.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+});
+
+
+  // (Optional) prevent actual form submission for demo
+  document.querySelector('.contact-form').addEventListener('submit', function(e){
+    alert('Your message with photo was submitted!\n(This is a demo – connect to a backend to actually receive mails.)');
+    e.preventDefault();
+  });
+  </script>
+</body>
+</html>

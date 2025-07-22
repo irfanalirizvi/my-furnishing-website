@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Products - India Furnishing & Rexine House</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>India Furnishing & Rexine House</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="products">
+    <div class="container">
+      <h2>Our Product Collection</h2>
+
+ <!-- Image Zoom Modal -->
+<div id="zoomModal" class="zoom-modal">
+  <span id="closeZoom" class="zoom-close">&times;</span>
+  <img class="zoom-modal-image" id="zoomImg" />
+</div>
+
+
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="sofa.jpeg" alt="Sofa" class="zoomable"/>
+          <h3>Sofa</h3>
+          
+        </div>
+
+        <div class="product-card">
+          <img src="Wallpaper1.jpg" alt="Wallpaper" class="zoomable" />
+          <h3>Wallpaper</h3>
+          
+        </div>
+
+        <div class="product-card">
+          <img src="chair.jpeg" alt="Chair" class="zoomable"/>
+          <h3>Comfort Chair</h3>
+        
+        </div>
+
+        <div class="product-card">
+          <img src="Mattress.jpg" alt="Mattress" class="zoomable" />
+          <h3> Mattress </h3>
+        </div>
+        
+         <div class="product-card">
+           <img src="Sofa1.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>L Shape Sofa</h3>
+          </div>
+
+           <div class="product-card">
+           <img src="Sofa2.jpg" alt="L Shape Sofa" class="zoomable" />
+           <h3>L Shape Lining Sofa</h3>
+          </div>
+
+          <div class="product-card">
+           <img src="Sofa3.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>2 Seater Handle Curve Sofa</h3>
+          </div>
+
+          <div class="product-card">
+           <img src="Sofa4.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Broad Handle Lining Sofa</h3>
+          </div>
+
+          <div class="product-card">
+           <img src="Sofa5.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Curve Handle Lining Sofa</h3>
+          </div>
+
+          <div class="product-card">
+           <img src="Sofa6.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>L Shape Hydraulic Sofa</h3>
+          </div>
+
+          <div class="product-card">
+           <img src="Hydraulic Sofa.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Hydraulic Sofa</h3>
+          </div>
+
+          <div class="product-card">
+           <img src="Headboard.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Leather Paneling &#10003; Design </h3>
+          </div>
+
+           <div class="product-card">
+           <img src="Headboard2.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Leather Paneling Y Design</h3>
+          </div>
+
+           <div class="product-card">
+           <img src="Headboard3.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Leather Paneling Vertical Design</h3>
+          </div>
+          
+          <div class="product-card">
+           <img src="Headboard4.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Leather Paneling Vertical Design</h3>
+          </div>
+
+          <div class="product-card">
+           <img src="Headboard5.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Leather Paneling Cadbury Design</h3>
+          </div>
+
+          <div class="product-card">
+           <img src="Headboard6.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Leather Paneling Vertical Design</h3>
+          </div>
+
+          <div class="product-card">
+           <img src="Headboard7.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Leather Paneling Leaves Design with Mattress</h3>
+          </div>
+
+          <div class="product-card">
+           <img src="Headboard8.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Leather Paneling Leaves Design on Wall</h3>
+          </div>
+          
+          <div class="product-card">
+           <img src="DHeadboard.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Leather Paneling Diamond Design</h3>
+          </div>
+          
+          <div class="product-card">
+           <img src="VHeadboard.jpg" alt="L Shape Sofa" class="zoomable"/>
+           <h3>Leather Paneling V Design</h3>
+          </div>
+          
+      </div>     
+
+<!-- Sliding Cart Panel -->
+<div id="cart-panel">
+  <ul id="cart-items"></ul>
+  <p><span id="cart-total"></span></p>
+</div>
+
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 India Furnishing & Rexine House. All rights reserved.</p>
+    </div>
+  </footer>
+
+<script>
+let cart = [];
+
+
+function changeQty(index, delta) {
+  if (cart[index]) {
+    cart[index].quantity += delta;
+    if (cart[index].quantity < 1) cart[index].quantity = 1;
+    updateCartUI();
+  }
+}
+
+
+function submitOrder() {
+  const customer = { 
+    name: prompt("Your Name:"), 
+    email: prompt("Email address:") 
+  };
+ 
+}
+
+
+document.querySelectorAll(".add-to-cart").forEach(btn => {
+  btn.addEventListener("click", function() {
+    const title = this.dataset.title;
+    const price = Number(this.dataset.price);
+    const existing = cart.find(item => item.title === title);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ title, price, quantity: 1 });
+    }
+    updateCartUI();
+    this.textContent = "Added!";
+    setTimeout(() => { this.textContent = "Add to Cart"; }, 800);
+  });
+});
+
+
+function updateCartUI() {
+  const cartItems = document.querySelector('#cart-panel #cart-items'); // target the cart's list inside panel
+  const cartTotal = document.querySelector('#cart-panel #cart-total');
+
+  cartItems.innerHTML = "";
+  let total = 0;
+
+  cartTotal.textContent = total.toFixed(2);
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCartUI();
+}
+
+
+// Render on page load
+updateCartUI();
+
+const cartPanel = document.getElementById('cart-panel');
+if (cartPanel) {
+  cartPanel.classList.remove('shake');
+  void cartPanel.offsetWidth;
+  cartPanel.classList.add('shake');
+}
+
+
+// Zoom functionality
+document.querySelectorAll('.zoomable').forEach(img => {
+  img.addEventListener('click', function () {
+    const modal = document.getElementById('zoomModal');
+    const modalImg = document.getElementById('zoomImg');
+    modal.classList.add('open');
+    modalImg.src = this.src;
+    modalImg.alt = this.alt || '';
+  });
+});
+document.getElementById('closeZoom').onclick = function () {
+  document.getElementById('zoomModal').classList.remove('open');
+};
+document.getElementById('zoomModal').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('open');
+});
+
+
+</script>
+
+</body>
+</html>
